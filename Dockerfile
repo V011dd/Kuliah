@@ -1,6 +1,7 @@
-FROM php:8.3-cli
+FROM php:8.3-fpm
 
 RUN apt-get update && apt-get install -y \
+    nginx \
     git \
     curl \
     zip \
@@ -17,11 +18,11 @@ WORKDIR /var/www
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
-
 RUN chmod -R 775 storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www
 
-RUN chmod +x start.sh
+COPY nginx.conf /etc/nginx/sites-available/default
 
 EXPOSE 8000
 
-CMD ["bash", "start.sh"]
+CMD service php8.3-fpm start && nginx -g 'daemon off;'

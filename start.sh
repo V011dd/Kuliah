@@ -1,2 +1,4 @@
 #!/bin/bash
-php -S 0.0.0.0:$PORT -t public router.php
+php artisan migrate --force
+service php8.3-fpm start
+nginx -g 'daemon off;'
