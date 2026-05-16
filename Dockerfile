@@ -29,5 +29,5 @@ RUN chmod -R 775 storage bootstrap/cache
 # Expose port
 EXPOSE 8000
 
-# Start Laravel
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+# Start Laravel tanpa migrate dulu
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
