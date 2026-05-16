@@ -29,5 +29,5 @@ RUN chmod -R 775 storage bootstrap/cache
 # Expose port
 EXPOSE 8000
 
-# Start Laravel tanpa migrate dulu
+# Pakai PHP built-in server langsung
 CMD php -S 0.0.0.0:$PORT -t public
